@@ -1,6 +1,6 @@
 from models.block import Block
 from blockchain.miner import mine_block
-from typing import Optional
+from typing import Optional, Dict
 
 # Node class
 class Node:
@@ -29,11 +29,13 @@ class BlockChain:
         while current:
             yield current.block # with yield create a generator
             current = current.previous
-            
-
-# nuevo_bloque = mine_block(
-#     index=1,
-#     prev_hash="0000...",
-#     map_hash="abc123",
-#     transactions=[{"from": "A", "to": "B", "amount": 10}]
-# )
+    
+    
+    def create_input(self, map_hash: str, transactions: Dict):
+        new_block = mine_block(
+            index = self.length,
+            prev_hash = self.get_last_hash(),
+            map_hash = map_hash,
+            transactions = [transactions]
+        )
+        print(f"✅ Bloque #{new_block.index} minado con hash: {new_block.block_hash[:12]}...")
