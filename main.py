@@ -14,6 +14,9 @@ def main():
 
         cont = input(f"\033[30m💱 ¿Add other transaction? (y/n): \033[0m")
         if cont.lower() != "y":
+            print(f'\033[30mValidating chain...\033[0m')
+            chain.is_valid()
+            chain.print()
             break
 
 if __name__ == "__main__":
