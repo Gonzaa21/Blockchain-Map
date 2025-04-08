@@ -1,6 +1,12 @@
 from blockchain.blockchain import BlockChain
 from utils.utils import transaction_input
-# from generator import generate_map  
+
+import sys
+from pathlib import Path
+generator_path = Path(__file__).resolve().parent / "generator" / "src"
+sys.path.append(str(generator_path))
+
+from generator.src.generator import generate_map
 
 def main():
     chain = BlockChain()
