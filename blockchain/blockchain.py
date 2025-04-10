@@ -32,13 +32,18 @@ class BlockChain:
     
     # create transactions input
     def create_input(self, map_hash: str, transactions: Dict):
+        
+        prev_hash = self.head.block.block_hash if self.head else "0"
+        
+        # create blocks
         new_block = mine_block(
             index = self.length,
-            prev_hash = self.get_last_hash(),
+            prev_hash = prev_hash,
             map_hash = map_hash,
             transactions = [transactions]
         )
-        print(f"✅ Block #{new_block.index} mined with hash: {new_block.block_hash[:12]}...")
+        self.add_block(new_block) # adding to chain
+        print(f"✔ Block #{new_block.index} mined with hash: {new_block.block_hash[:12]}...")
     
     
     
@@ -48,12 +53,12 @@ class BlockChain:
         current = self.head
         while current:
             block = current.block
-            print(f"\n🧱 Block #{block.index}")
-            print(f"  - Hash: {block.block_hash}")
-            print(f"  - Previous: {block.prev_hash}")
-            print(f"  - Map hash: {block.map_hash}")
-            print(f"  - Nonce: {block.nonce}")
-            print(f"  - Transaction: {block.transactions}")
+            print(f"\033[30m\n🧱 Block #{block.index}\033[0m")
+            print(f"\033[90m  - Hash:\033[0m \033[37m{block.block_hash}\033[0m")
+            print(f"\033[90m  - Previous:\033[0m \033[37m{block.prev_hash}\033[0m")
+            print(f"\033[90m  - Map hash:\033[0m \033[37m{block.map_hash}\033[0m")
+            print(f"\033[90m  - Nonce:\033[0m \033[37m{block.nonce}\033[0m")
+            print(f"\033[90m  - Transaction:\033[0m \033[37m{block.transactions}\033[0m")
             current = current.previous
             
     # hash and chain validations
@@ -66,15 +71,15 @@ class BlockChain:
             
             # Comparison of current hash
             if block.block_hash != block.calculate_hash():
-                print(f"❌ Bloque #{block.index} tiene un hash inválido.")
+                print(f"\033[31m❌ Block #{block.index} have a invalid hash.\033[0m")
                 return False
 
             # comparison of previous hash
             if block.prev_hash != prev_block.block_hash:
-                print(f"❌ Bloque #{block.index} tiene un hash anterior incorrecto.")
+                print(f"\033[31m❌ Block #{block.index} have a bad previous hash.\033[0m")
                 return False
 
             current = current.previous
 
-            print("✅ Blockchain válida.")
+            print(f"\033[32m✔ Blockchain valid.\033[0m")
         return True
