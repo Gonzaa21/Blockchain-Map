@@ -6,7 +6,7 @@ from generator_code.generator import generate_map, gen_save_map
 from generator_code.hash_utils import save_hash
 
 # read submodule config.json file
-with open(Path(__file__).resolve().parent / "generator" / "config.json") as f:
+with open(Path(__file__).resolve().parent / "generator_code" / "config.json") as f:
     config = json.load(f)
 
 def main():
