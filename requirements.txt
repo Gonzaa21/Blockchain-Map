@@ -4,3 +4,7 @@ flake8
 black
 pytest
 matplotlib
+numpy
+matplotlib
+pillow
+perlin-noise

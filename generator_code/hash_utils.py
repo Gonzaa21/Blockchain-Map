@@ -1,7 +1,7 @@
 import hashlib
 import json
 from pathlib import Path
-import generator
+import generator_code.generator
 
 def generate_hash(filename): # generate hash
     hasher = hashlib.sha256() # create hash with SHA-256
@@ -17,8 +17,7 @@ def generate_hash(filename): # generate hash
 def save_hash(map_filename): # save hash in json
     hash_value = generate_hash(map_filename) # generate hash
     
-    base_dir = Path(__file__).resolve().parent.parent
-    hash_dir = base_dir / "maps" / "hash"
+    hash_dir = Path(__file__).resolve().parent / "maps" / "hash"
     hash_dir.mkdir(parents=True, exist_ok=True)
     
     hash_filename = hash_dir / Path(map_filename).with_suffix(".json").name # save route and replace .bin -> .json
@@ -29,5 +28,5 @@ def save_hash(map_filename): # save hash in json
     return str(hash_filename)
 
 if __name__ == "__main__":
-    map_filename = generator.gen_save_map(map)  # save map
+    map_filename = generator_code.generator.gen_save_map(map)  # save map
     hash_filename = save_hash(map_filename)  # generate and save hash

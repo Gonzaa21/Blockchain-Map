@@ -5,7 +5,7 @@ from pathlib import Path
 from perlin_noise import PerlinNoise
 
 # configuration
-with open('generator\config.json','r') as file:
+with open('generator_code\config.json','r') as file:
     config = json.load(file)
     
 # generate function
@@ -23,8 +23,7 @@ def generate_map(size, scale, octaves):
 # save binary map
 def gen_save_map(map_data):
     # avoid errors of ejecution path
-    base_dir = Path(__file__).resolve().parent.parent
-    bin_dir = base_dir / "maps" / "bin"
+    bin_dir = Path(__file__).resolve().parent / "maps" / "bin"
     bin_dir.mkdir(parents=True, exist_ok=True)
     
     timestamp = time.strftime("%Y%m%d_%H%M%S")  # Generate unique label based on date
