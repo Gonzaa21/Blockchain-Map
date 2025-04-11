@@ -1,0 +1,7 @@
+{
+    "size": 256,
+    "scale": 100,
+    "octaves": 8,
+    "seed": 42,
+    "output": "maps/png/map.png"
+}
