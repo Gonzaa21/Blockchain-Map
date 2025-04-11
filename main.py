@@ -1,15 +1,9 @@
 from blockchain.blockchain import BlockChain
 from utils.utils import transaction_input
-import sys
 import json
 from pathlib import Path
-
-# add route of submodule
-generator_path = Path(__file__).resolve().parent / "generator" / "src"
-sys.path.append(str(generator_path))
-
-from generator import generate_map, gen_save_map
-from hash_utils import save_hash
+from generator_code.generator import generate_map, gen_save_map
+from generator_code.hash_utils import save_hash
 
 # read submodule config.json file
 with open(Path(__file__).resolve().parent / "generator" / "config.json") as f:
