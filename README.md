@@ -50,3 +50,7 @@ Map-blockchain/
     ```bash
     pip install -r requirements.txt
     ```
+
+# 💻 Terminal
+
+![image](https://github.com/user-attachments/assets/4b4f7174-3517-4d7a-92e6-14bece1cdd3c)
